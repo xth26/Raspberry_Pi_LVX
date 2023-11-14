@@ -1,0 +1,27 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides: Auto_Start_Test
+# Required-Start: $remote_fs
+# Required-Stop: $remote_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Auto Start Test 
+# Descrption: This service is used to test auto start service
+### END INIT INFO
+
+case "$1" in
+     start)
+         echo "Start"
+         sudo /home/pi/Livox-SDK_0/build/sample/lidar_lvx_file/lidar_lvx_sample&
+        ;;
+     stop)
+         echo "Stop"
+         killall /home/pi/Livox-SDK_0/build/sample/lidar_lvx_file/lidar_lvx_sample
+         exit 1
+         ;;
+     *)
+         echo "Usage:service Auto_Start_Test start|stop"
+         exit 1
+         ;;
+esac
+exit 0
